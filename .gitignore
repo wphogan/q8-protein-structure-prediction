@@ -10,4 +10,5 @@ models
 stats
 *.csv
 *.json
-
+.idea/*
+.DS_Store

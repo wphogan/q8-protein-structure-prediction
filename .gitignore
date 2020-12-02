@@ -10,6 +10,9 @@ preprocess/TR5534.json
 preprocess/cullpdb+profile_5926.npy
 preprocess/cb513+profile_split1.npy
 preprocess/TR6114_no_pssm_onedim.json
+preprocess/TR6114_s2s_base.json
+
+seq2seq/gen_seq
 
 __pycache__
 .ipynb_checkpoints

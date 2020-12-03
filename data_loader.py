@@ -42,17 +42,16 @@ class ProteinDataset(data.Dataset):
         return len(self.all_encodings)
 
 
-def get_loader(protein_data, ids, batch_size, shuffle, num_workers, num_features):
+def get_loader(protein_data, ids, batch_size, shuffle, num_workers):
     """Returns torch.utils.data.DataLoader"""
 
-    protein = ProteinDataset(protein_data, ids, size=(700 * num_features))
+    protein = ProteinDataset(protein_data, ids, size=(700 * 51))
 
     # def collate_fn(data):
     #     return data
 
     data_loader = torch.utils.data.DataLoader(dataset=protein,
                                               batch_size=batch_size,
-                                              shuffle=shuffle,
-                                              num_workers=num_workers, )
+                                              shuffle=shuffle)
     # collate_fn=collate_fn)
     return data_loader, len(protein)

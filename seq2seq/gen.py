@@ -1,9 +1,15 @@
 import argparse
-import pickle as pkl
-import json
 import os
-from train_utils import *
+
+import torch.nn as nn
+import torch.optim as optim
+import torch.nn.functional as F
+import numpy as np
+import json
+import torch
 from data_loader import get_loader
+
+from train_utils import *
 
 np.random.seed(42)
 parser = argparse.ArgumentParser(description='Choose a config file')
@@ -15,12 +21,6 @@ parser.add_argument(
     help='Choose a config file (default: \'base\')'
 )
 
-# ensemble
-parser.add_argument(
-    '--num_models',
-    default=1,
-    help='Choose the number of models to ensemble (default: 1)'
-)
 args = parser.parse_args()
 
 # grab values from arguments
@@ -29,12 +29,25 @@ experiment = args.experiment
 # base architecture
 if "base" in experiment:
     from configs import base_config as cfg
+    from models.S2S import S2S as Model
+elif "bidi" in experiment:
+    from configs import bidirectional_config as cfg
+    from models.S2S import S2S_B as Model
+elif "att" in experiment:
+    from configs import att_config as cfg
+    from models.S2S import S2S_att as Model
 else:
     from configs import dummy_config as cfg
+    from models.S2S import S2S as Model
     experiment = "dummy"
 
 # Get argument from config
 cfg = cfg.cfg
+batch_size = cfg["batch_size"]
+valid_batch_size = cfg["valid_batch_size"]
+num_workers = cfg["num_workers"]
+epochs = cfg["epochs"]
+lr = cfg["lr"]
 model_type = experiment
 
 num_workers = cfg["num_workers"]

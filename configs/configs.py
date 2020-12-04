@@ -23,3 +23,27 @@ cfg["base_s2s"]["lr"] = 0.0004
 cfg["base_s2s"]["tr5534"] = "preprocess/TR5534.json"
 cfg["base_s2s"]["tr6614"] = "preprocess/TR6614_s2s_base.json"
 cfg["base_s2s"]["cb513"] = "preprocess/CB513.json"
+
+cfg["bidi_s2s"] = {}
+cfg["bidi_s2s"]["batch_size"] = 60
+cfg["bidi_s2s"]["valid_batch_size"] = 150
+cfg["bidi_s2s"]["test_batch_size"] = 20
+cfg["bidi_s2s"]["num_workers"] = 4
+cfg["bidi_s2s"]["epochs"] = 50
+cfg["bidi_s2s"]["lr"] = 0.0004
+cfg["bidi_s2s"]["lr"] = 0.0004
+cfg["bidi_s2s"]["tr5534"] = "preprocess/TR5534.json"
+cfg["bidi_s2s"]["tr6614"] = "preprocess/TR6614_s2s_bidi.json"
+cfg["bidi_s2s"]["cb513"] = "preprocess/CB513.json"
+
+cfg["att_s2s"] = {}
+cfg["att_s2s"]["batch_size"] = 60
+cfg["att_s2s"]["valid_batch_size"] = 150
+cfg["att_s2s"]["test_batch_size"] = 20
+cfg["att_s2s"]["num_workers"] = 4
+cfg["att_s2s"]["epochs"] = 50
+cfg["att_s2s"]["lr"] = 0.0004
+cfg["att_s2s"]["lr"] = 0.0004
+cfg["att_s2s"]["tr5534"] = "preprocess/TR5534.json"
+cfg["att_s2s"]["tr6614"] = "preprocess/TR6614_s2s_att.json"
+cfg["att_s2s"]["cb513"] = "preprocess/CB513.json"

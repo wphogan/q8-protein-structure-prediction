@@ -132,8 +132,6 @@ class S2S_B(nn.Module):
         first_seq = self.hidden_to_pssm(h).permute([1, 0, 2])
         seq_holder = torch.zeros_like(pssm).to(x.device)
 
-        print(first_seq.shape)
-
         # Non linearity + PSSM are in sigmoid range in the first place
         seq_holder[:, 0:1, :] = F.sigmoid(first_seq)
         seq_holder[:, 1:, :] = pssm[:, :x.shape[1] - 1, :]
@@ -183,7 +181,7 @@ class S2S_att(nn.Module):
     def __init__(self, num_features=22,
                  size_embedding=21,
                  bidirectional=True,
-                 encoder_hidden_size=250):
+                 encoder_hidden_size=100):
 
         self.num_features = num_features
         decoder_hidden_size = encoder_hidden_size * 2
@@ -242,11 +240,10 @@ class S2S_att(nn.Module):
             xt = torch.cat([xt, context_vec], dim=2)
 
             out, (ht, ct) = self.decoder(xt, (ht, ct))
-            all_out.append(F.sigmoid(out))
+            all_out.append(F.sigmoid(self.hidden_to_pssm(out)))
             seq = pssm[:, t:t+1, :]
 
         all_out = torch.cat(all_out, axis=1)
-
         return all_out
 
     def gen(self, x):

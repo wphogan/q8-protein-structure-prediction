@@ -200,8 +200,9 @@ def test(model, test_loader, device, num_features=51, experiment="Name of experi
     # Calc test precision, recall, and F1
     precision_recall_f1(predictions, labels)
     accs = np.mean(labels == predictions)
+    print(accs)
 
     # Evaluate loss, acc, conf. matrix, and class. report on devset
-    class_report_conf_matrix(predictions, labels, experiment)
+    # class_report_conf_matrix(predictions, labels, experiment)
 
     return accs

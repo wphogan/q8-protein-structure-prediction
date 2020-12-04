@@ -30,6 +30,12 @@ experiment = args.experiment
 if "base" in experiment:
     from configs import base_config as cfg
     from models.S2S import S2S as Model
+elif "bidi" in experiment:
+    from configs import bidirectional_config as cfg
+    from models.S2S import S2S_B as Model
+elif "att" in experiment:
+    from configs import att_config as cfg
+    from models.S2S import S2S_att as Model
 else:
     from configs import dummy_config as cfg
     from models.S2S import S2S as Model

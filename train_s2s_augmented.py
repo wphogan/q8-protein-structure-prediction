@@ -45,8 +45,10 @@ if __name__ == "__main__":
         cb513_data = json.load(open(cb513_path, "r"))
     else:
         print(os.listdir("preprocess"))
-        # tr6614_data = json.load(open(tr6114_path, "r"))
+        tr6614_data = json.load(open(tr6114_path, "r"))
+        print("6614 loaded")
         tr5534_data = json.load(open(tr5534_path, "r"))
+        print("5534 loaded")
         cb513_data = json.load(open(cb513_path, "r"))
 
     print("data loaded")
@@ -57,8 +59,8 @@ if __name__ == "__main__":
     for i in range(len(tr5534_data)):
         data[str(i)] = tr5534_data[str(i)]
 
-#     for i in range(len(tr6614_data)):
-#         data[str(i + offset)] = tr6614_data[str(i)]
+    for i in range(len(tr6614_data)):
+        data[str(i + offset)] = tr6614_data[str(i)]
         
 
     len_train = len(data)
